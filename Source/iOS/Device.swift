@@ -127,6 +127,8 @@ open class Device {
             case "iPad14,5", "iPad14,6":                     return .iPadPro12_9Inch6
             case "iPad16,3", "iPad16,4":                     return .iPadProM4_11Inch
             case "iPad16,5", "iPad16,6":                     return .iPadProM4_13Inch
+            case "iPad17,1", "iPad17,2":                     return .iPadProM5_11Inch
+            case "iPad17,3", "iPad17,4":                     return .iPadProM5_13Inch
 
             /*** iPod ***/
             case "iPod1,1":                                  return .iPodTouch1Gen
@@ -288,7 +290,11 @@ extension Device {
                 .iPhone16,
                 .iPhone16Plus,
                 .iPhone16Pro,
-                .iPhone16Pro_Max:
+                .iPhone16Pro_Max,
+                .iPhone17,
+                .iPhone17Pro,
+                .iPhone17Pro_Max,
+                .iPhoneAir:
             return true
         default:
             return false
