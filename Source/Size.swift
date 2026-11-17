@@ -8,7 +8,7 @@
 
 public enum Size: Int, Comparable {
     case unknownSize = 0
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
     /// iPhone 2G, 3G, 3GS, 4, 4s, iPod Touch 4th gen.
     case screen3_5Inch
     /// iPhone 5, 5s, 5c, SE, iPod Touch 5-7th gen.
@@ -53,10 +53,18 @@ public enum Size: Int, Comparable {
     case screen10_9Inch
     /// iPad Pro (11-inch)
     case screen11Inch
+    #if os(tvOS)
+    /// Apple TV (1st–3rd generation), 1280×720 pt.
+    case screen720p
+    #endif
     /// iPad Pro (12.9-inch)
     case screen12_9Inch
     /// iPad Pro (13-inch)
     case screen13Inch
+    #if os(tvOS)
+    /// Apple TV HD and 4K. 1920×1080 pt; 4K is this same canvas at scale 2 (`isRetina()`).
+    case screen1080p
+    #endif
     #elseif os(OSX)
     case screen11Inch
     case screen12Inch

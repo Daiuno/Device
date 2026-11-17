@@ -12,10 +12,12 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target   = '11.0'
   s.osx.deployment_target   = '10.13'
+  s.tvos.deployment_target  = '15.0'
 
   s.requires_arc            = true
   s.source_files            = "Source/*.swift"
   s.ios.source_files        = "Source/iOS/*.swift"
+  s.tvos.source_files       = "Source/iOS/*.swift"
   s.osx.source_files        = "Source/macOS/*.swift"
 
   s.swift_version = '5.0' 

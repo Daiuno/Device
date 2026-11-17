@@ -122,6 +122,16 @@ public enum Version: String {
     case iPodTouch6Gen
     case iPodTouch7Gen
 
+    /*** Apple TV ***/
+    case appleTV1
+    case appleTV2
+    case appleTV3
+    case appleTVHD
+    case appleTV4K
+    case appleTV4K2
+    case appleTV4K3
+    case appleTV4K4
+
     /*** simulator ***/
     case simulator
 
