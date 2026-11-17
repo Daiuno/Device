@@ -43,6 +43,8 @@ public enum Size: Int, Comparable {
     case screen7_9Inch
     /// iPad Mini
     case screen8_3Inch
+    /// iPad mini A20 Pro
+    case screen8_5Inch
     /// iPad, iPad Pro (9.7-inch)
     case screen9_7Inch
     /// iPad (10.2-inch)
