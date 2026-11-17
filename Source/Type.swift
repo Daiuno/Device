@@ -7,11 +7,14 @@
 //
 
 public enum Type: String {
-    #if os(iOS)
+    #if os(iOS) || os(tvOS)
     case iPhone
     case iPad
     case iPod
     case simulator
+    #endif
+    #if os(tvOS)
+    case appleTV
     #elseif os(OSX)
     case iMac
     case macMini

@@ -6,7 +6,7 @@
 //  Copyright © 2015 Ekhoo. All rights reserved.
 //
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 import UIKit
 
 open class Device {
@@ -146,6 +146,16 @@ open class Device {
             case "iPod7,1":                                  return .iPodTouch6Gen
             case "iPod9,1":                                  return .iPodTouch7Gen
 
+            /*** Apple TV ***/
+            case "AppleTV1,1":                               return .appleTV1
+            case "AppleTV2,1":                               return .appleTV2
+            case "AppleTV3,1", "AppleTV3,2":                 return .appleTV3
+            case "AppleTV5,3":                               return .appleTVHD
+            case "AppleTV6,2":                               return .appleTV4K
+            case "AppleTV11,1":                              return .appleTV4K2
+            case "AppleTV14,1":                              return .appleTV4K3
+            case "AppleTV18,1":                              return .appleTV4K4
+
             /*** Simulator ***/
             case "i386", "x86_64", "arm64":                  return .simulator
 
@@ -158,6 +168,11 @@ open class Device {
     static fileprivate func getType(code: String, detectSimulator: Bool) -> Type {
 		let versionCode = getVersionCode(detectSimulator: detectSimulator)
 
+#if os(tvOS)
+        if versionCode.contains("AppleTV") {
+            return .appleTV
+        }
+#endif
         if versionCode.contains("iPhone") {
             return .iPhone
         } else if versionCode.contains("iPad") {
@@ -255,10 +270,19 @@ open class Device {
                 return .screen10_9Inch
             case 1194, 1210:
                 return .screen11Inch
+            #if os(tvOS)
+            case 1280:
+                return .screen720p
+            #endif
             case 1366:
                 return .screen12_9Inch
             case 1376:
                 return .screen13Inch
+            #if os(tvOS)
+            case 1920:
+                // 1080p and 4K share this point size. 4K output is scale 2; use isRetina().
+                return .screen1080p
+            #endif
             default:
                 // Folding can report a size between the two canvases. Keep Duo out of the unknown/small bucket.
                 if version() == .iPhoneDuo {
@@ -298,6 +322,12 @@ open class Device {
     static public func isPod(detectSimulator: Bool = true) -> Bool {
         return type() == .iPod
     }
+
+    #if os(tvOS)
+    static public func isTV(detectSimulator: Bool = true) -> Bool {
+        return type(detectSimulator: detectSimulator) == .appleTV
+    }
+    #endif
 
     static public func isSimulator() -> Bool {
         return type() == .simulator
